@@ -32,7 +32,7 @@ assets/images/          put og-image.png (1200x630) here for link previews
 6. **Our Work**: Kroshaiby.Laii and TFS project cards.
 7. **Process**.
 8. **Pricing**: the interactive price estimator (see below).
-9. **Add-Ons That Grow Your Business**: tabs with a live preview for each add-on. The Reviews & QR code kit preview shows a real QR code (`assets/images/qr-tremax.svg`) that opens https://tremax-digital.netlify.app/; regenerate it if the site moves to a new domain (any free QR generator works; save it as an SVG with the same name). The phone app preview is a clickable phone: the site in the browser, Share, "Add to Home Screen", the new icon, a launch screen, then a sample app with Home / Menu / Order / Visit tabs, a working cart and a pickup-order confirmation. "Watch the demo" plays a walkthrough with a moving finger (it also plays once, automatically, the first time the tab opens; not for visitors who turn on reduced motion). Tapping inside the phone stops the demo and hands over control.
+9. **Add-Ons That Grow Your Business**: tabs with a live preview for each add-on. The Reviews & QR code kit preview shows a real QR code (`assets/images/qr-tremax.svg`) that opens https://trelawnnoel-art.github.io/tremax-digital/; regenerate it if the site moves to a new domain (any free QR generator works; save it as an SVG with the same name). The phone app preview is a clickable phone: the site in the browser, Share, "Add to Home Screen", the new icon, a launch screen, then a sample app with Home / Menu / Order / Visit tabs, a working cart and a pickup-order confirmation. "Watch the demo" plays a walkthrough with a moving finger (it also plays once, automatically, the first time the tab opens; not for visitors who turn on reduced motion). Tapping inside the phone stops the demo and hands over control.
 10. **See How Your Site Is Doing**: what the Business package's Google setup and dashboard include (Google Analytics, Search Console, Business Profile, joined in one Looker Studio dashboard), with a sample dashboard for Rise Bakery: four stat tiles, a "showed up in Google searches" line chart (hover or arrow keys for monthly values, "Show the numbers" for a table), traffic sources, and top searches. All numbers are made up and labelled "Sample data"; keep that label. To change the chart, edit `data-series` on `.dash-chart` in `index.html` and the table under it.
 11. **Full sample dashboard** (`dashboard.html`): opened from "Explore the full sample dashboard". A date-range switch (October / Last 3 months / Since launch) updates everything: six number tiles, a visitors chart compared with the period before, a Google-search-to-customer funnel, traffic sources, distance, devices, a table of Google searches (times shown, clicks, click rate, average position), most visited pages, a "when people visit" heatmap, monthly calls and direction requests, and example takeaways. All numbers are made up and live at the top of `js/dashboard.js`; October matches the preview on the home page. The page is marked `noindex` so Google doesn't list it as a real page.
 12. **About**, **Contact**, footer (with "Replay intro").
@@ -87,7 +87,19 @@ The note under the estimator says: estimates only, final quote after a free cons
 
 Search the project for `TODO` to find every spot that still needs your details.
 
-## Live on Netlify
+## Live on GitHub Pages
+
+The site is live at https://trelawnnoel-art.github.io/tremax-digital/ (repository: https://github.com/trelawnnoel-art/tremax-digital). To publish changes, open a terminal in this folder and run:
+
+```
+git add -A
+git commit -m "Describe the change"
+git push
+```
+
+GitHub rebuilds the site within a minute or two.
+
+## Netlify (backup)
 
 The site is live at https://tremax-digital.netlify.app (Netlify project `tremax-digital`, on the trelawnnoel@gmail.com account). This folder is linked to it (the `.netlify` folder), so to publish changes, open a terminal in this folder and run:
 
