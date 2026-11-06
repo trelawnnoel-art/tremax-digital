@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>TREMAX Digital | Web Design &amp; Development for Growing Businesses</title>
+  <meta name="description" content="TREMAX Digital designs and builds custom websites, online stores, and digital tools for restaurants, brands, and small businesses. You Want. We Deliver.">
+  <meta name="theme-color" content="#080D18">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="TREMAX Digital | You Want. We Deliver.">
+  <meta property="og:description" content="Custom websites and digital experiences that turn your vision into something real.">
+  <meta property="og:image" content="assets/images/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <script>
+    /* Decide before first paint whether the intro plays, so the page never flashes. */
+    (function () {
+      var play = true;
+      try { if (sessionStorage.getItem('tremax-intro-seen')) play = false; } catch (e) {}
+      if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) play = false;
+      var root = document.documentElement;
+      root.classList.add('js', play ? 'intro-playing' : 'intro-skipped');
+      /* Safety net: if scripts fail to load, never leave visitors stuck behind the intro. */
+      setTimeout(function () {
+        if (!root.classList.contains('intro-done') && !root.classList.contains('intro-running')) {
+          root.classList.remove('intro-playing'); root.classList.add('intro-skipped', 'hero-in');
+        }
+      }, 4000);
+    })();
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="scroll-progress" aria-hidden="true"><span></span></div>
+
+  <!-- ============ INTRO: SPARK → GRID → WARP → NAME → REVEAL ============ -->
+  <div id="intro" class="intro">
+    <!-- Everything inside .intro__screen folds shut into one line at the end; the monogram sits above it and flies to the nav. -->
+    <div class="intro__screen" aria-hidden="true">
+      <canvas class="intro__canvas"></canvas>
+      <div class="intro__lockup">
+        <span class="intro__slot"></span>
+        <p class="intro__word"><span>T</span><span>R</span><span>E</span><span>M</span><span>A</span><span>X</span></p>
+        <p class="intro__digital">DIGITAL</p>
+        <p class="intro__tagline"><span class="intro__typed"></span><span class="intro__cursor"></span></p>
+      </div>
+    </div>
+    <span class="intro__line" aria-hidden="true"></span>
+    <svg class="intro__mark" viewBox="0 0 100 100" aria-hidden="true">
+      <defs>
+        <linearGradient id="txIntro" x1="10" y1="10" x2="90" y2="90" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#75BEFF"/><stop offset="1" stop-color="#3B91F5"/>
+        </linearGradient>
+      </defs>
+      <g fill="none" stroke="url(#txIntro)" stroke-width="9">
+        <path pathLength="1" d="M12 16H88"/><path pathLength="1" d="M50 16V59"/>
+        <path pathLength="1" d="M24 30L76 88"/><path pathLength="1" d="M76 30L24 88"/>
+      </g>
+    </svg>
+    <button class="intro__skip" type="button">Skip intro</button>
+  </div>
+
+  <!-- ============ NAVIGATION ============ -->
+  <header class="nav" id="top">
+    <div class="nav__inner">
+      <a class="brand" href="#home" aria-label="TREMAX Digital, back to top">
+        <svg class="brand__mark" viewBox="0 0 100 100" aria-hidden="true">
+          <defs><linearGradient id="txNav" x1="10" y1="10" x2="90" y2="90" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#75BEFF"/><stop offset="1" stop-color="#3B91F5"/></linearGradient></defs>
+          <g fill="none" stroke="url(#txNav)" stroke-width="9"><path d="M12 16H88"/><path d="M50 16V59"/><path d="M24 30L76 88"/><path d="M76 30L24 88"/></g>
+        </svg>
+        <span class="brand__text"><span class="brand__name">TREMAX</span><span class="brand__sub">DIGITAL</span></span>
+      </a>
+      <nav class="nav__links" id="nav-links" aria-label="Main">
+        <a href="#home">Home</a>
+        <a href="#services">Services</a>
+        <a href="#build">Live Build</a>
+        <a href="#work">Our Work</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <a class="btn btn--primary btn--sm nav__cta" href="#contact">Start a Project</a>
+      </nav>
+      <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="home">
+      <div class="hero__light" aria-hidden="true"></div>
+      <div class="container hero__grid">
+        <div class="hero__copy">
+          <h1 class="hero__title">
+            <span class="line"><span>We Don’t Just Build Websites.</span></span>
+            <span class="line line--accent"><span>We Build What’s Next.</span></span>
+          </h1>
+          <p class="hero__lede">From bold ideas to powerful digital experiences, TREMAX Digital helps businesses transform their vision into reality.</p>
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="#contact">Start a Project</a>
+            <a class="btn btn--ghost" href="#work">Explore Our Work</a>
+          </div>
+        </div>
+        <div class="hero__stage">
+          <canvas class="hero__canvas" aria-hidden="true"></canvas>
+          <p class="hero__hint" aria-hidden="true">Move your cursor across the grid</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SERVICES TICKER ============ -->
+    <div class="ticker" data-motion>
+      <p class="sr-only">Websites, online ordering, animations, online stores, Google and SEO, care plans.</p>
+      <div class="ticker__track" aria-hidden="true">
+        <ul class="ticker__group"><li>Websites</li><li>Online ordering</li><li>Animations</li><li>Online stores</li><li>Google &amp; SEO</li><li>Care plans</li></ul>
+        <ul class="ticker__group"><li>Websites</li><li>Online ordering</li><li>Animations</li><li>Online stores</li><li>Google &amp; SEO</li><li>Care plans</li></ul>
+      </div>
+    </div>
+
+    <!-- ============ SERVICES ============ -->
+    <section class="section" id="services" aria-labelledby="services-title">
+      <div class="container">
+        <header class="section__head">
+          <h2 class="section__title reveal" id="services-title">Digital Solutions Built Around Your Vision.</h2>
+          <p class="section__intro">Six ways we help businesses show up online, sell more, and spend less time on busywork.</p>
+        </header>
+        <div class="services">
+          <article class="service">
+            <svg class="service__icon" viewBox="0 0 32 32" aria-hidden="true"><rect x="3" y="5" width="26" height="22" rx="2"/><path d="M3 11h26M8 16h9M8 20h6M21 16h4v6h-4z"/></svg>
+            <h3>Website Design &amp; Development</h3>
+            <p>Custom, responsive websites designed to reflect your business’s identity and give visitors an experience worth remembering.</p>
+          </article>
+          <article class="service">
+            <svg class="service__icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M5 22a11 11 0 0 1 22 0zM3 25h26M16 9V7M14 7h4"/></svg>
+            <h3>Restaurant Digital Solutions</h3>
+            <p>Restaurant websites, digital menus, online ordering integrations, and features that keep customers coming back.</p>
+          </article>
+          <article class="service">
+            <svg class="service__icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M6 10h20l-1.5 17h-17zM11 13V8a5 5 0 0 1 10 0v5"/></svg>
+            <h3>Ecommerce &amp; Online Stores</h3>
+            <p>Product catalogs, storefronts, shopping experiences, and payment integrations for brands ready to sell online.</p>
+          </article>
+          <article class="service">
+            <svg class="service__icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M4 27h24M8 23v-6M14 23v-10M20 23v-7M26 23V9M6 13l7-5 6 4 8-6"/></svg>
+            <h3>Business Analytics &amp; Dashboards</h3>
+            <p>Clear interfaces that help owners understand website activity, sales, and how the business is performing.</p>
+          </article>
+          <article class="service">
+            <svg class="service__icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M5 22a11 11 0 1 1 22 0M16 22l6-7M4 26h24"/><circle cx="16" cy="22" r="1.5"/></svg>
+            <h3>Website Maintenance &amp; Optimization</h3>
+            <p>Updates, speed improvements, troubleshooting, and ongoing technical support so your site keeps working for you.</p>
+          </article>
+          <article class="service">
+            <svg class="service__icon" viewBox="0 0 32 32" aria-hidden="true"><circle cx="7" cy="8" r="3"/><circle cx="25" cy="16" r="3"/><circle cx="7" cy="24" r="3"/><path d="M10 8h5a4 4 0 0 1 4 4v4h3M10 24h5a4 4 0 0 0 4-4v-4"/></svg>
+            <h3>Business Automation</h3>
+            <p>Form processing, notifications, and connected workflows that take repetitive tasks off your plate.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ LIVE BUILD ============ -->
+    <section class="section section--line" id="build" aria-labelledby="build-title">
+      <div class="container">
+        <header class="section__head">
+          <h2 class="section__title reveal" id="build-title">Watch a Website Build Itself.</h2>
+          <p class="section__intro">Every line of code on the left becomes something real on the right. This is how your site gets made.</p>
+        </header>
+        <div class="build" data-motion>
+          <div class="build__code" aria-hidden="true">
+            <div class="build__bar"><i></i><i></i><i></i><span>index.html</span></div>
+            <div class="build__lines"></div>
+          </div>
+          <!-- Sample business for the demo, not a client. -->
+          <div class="build__preview" aria-hidden="true">
+            <div class="pv-nav pvx" data-k="nav"><b>Rise Bakery</b><span>Menu&nbsp;&nbsp; Order&nbsp;&nbsp; Visit</span></div>
+            <div class="pv-hero">
+              <p class="pv-title pvx" data-k="h1">Warm bread, every morning</p>
+              <p class="pvx" data-k="p">Order by 9pm, pick up at 7am.</p>
+              <span class="pv-btn pvx" data-k="btn">Order for pickup</span>
+            </div>
+            <div class="pv-menu pvx" data-k="menu"><div><i></i>Sourdough<em>$9</em></div><div><i></i>Croissants<em>$4</em></div><div><i></i>Cinnamon rolls<em>$5</em></div></div>
+          </div>
+        </div>
+        <div class="build__foot">
+          <p class="build__status" role="status">Scroll here to start the build.</p>
+          <button class="btn btn--ghost build__again" type="button">Build it again</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PORTFOLIO ============ -->
+    <section class="section section--alt" id="work" aria-labelledby="work-title">
+      <div class="container">
+        <header class="section__head">
+          <h2 class="section__title reveal" id="work-title">Our Work Speaks for Itself.</h2>
+          <p class="section__intro">Real projects, built from first sketch to launch.</p>
+        </header>
+
+        <!-- Portfolio card: copy this <article> block to add a new project. -->
+        <article class="project">
+          <div class="project__info">
+            <p class="project__industry">Handmade Crochet &amp; Fashion</p>
+            <h3 class="project__name">Kroshaiby.Laii</h3>
+            <p class="project__desc">A warm, boutique-style website for a handmade crochet studio: a 3D yarn ball you can drag to spin, shop-by-collection and featured pieces, a behind-the-stitch process story, a photo gallery, and a custom-order form where customers can upload an inspiration image.</p>
+            <!-- Features above are taken from the finished Kroshaiby.Laii site (Downloads/files/index.html). -->
+            <ul class="project__tags" aria-label="Services provided">
+              <li>Web design</li><li>Development</li><li>Interactive 3D</li><li>Custom-order form</li>
+            </ul>
+            <!-- TODO: replace # with the live Kroshaiby.Laii URL -->
+            <a class="btn btn--ghost" href="#" data-placeholder-link>View Project</a>
+          </div>
+          <div class="project__devices" aria-label="Kroshaiby.Laii website previews">
+            <figure class="device device--desktop">
+              <div class="device__bar" aria-hidden="true"><i></i><i></i><i></i><span>kroshaiby.laii</span></div>
+              <div class="device__screen">
+                <img src="assets/portfolio/kroshaiby-desktop.jpg" alt="Kroshaiby.Laii homepage on a desktop screen, with a 3D pink yarn ball beside the headline" loading="lazy" data-fallback="Desktop screenshot">
+              </div>
+            </figure>
+            <figure class="device device--phone">
+              <div class="device__screen">
+                <img src="assets/portfolio/kroshaiby-mobile.jpg" alt="Kroshaiby.Laii homepage on a phone" loading="lazy" data-fallback="Mobile screenshot">
+              </div>
+            </figure>
+          </div>
+        </article>
+
+        <article class="project">
+          <div class="project__info">
+            <p class="project__industry">Faith-Based Streetwear</p>
+            <h3 class="project__name">TFS</h3>
+            <p class="project__desc">A pre-launch website for a faith-based streetwear brand: a scroll journey from darkness to light, a rotating Scripture orbit, and an interactive reveal of the first hoodie, ending in a launch waitlist.</p>
+            <!-- Features above are taken from the TFS project's own code (Downloads/tfs-website-v2). -->
+            <ul class="project__tags" aria-label="Services provided">
+              <li>Web design</li><li>Development</li><li>Scroll storytelling</li><li>Email waitlist</li>
+            </ul>
+            <!-- TODO: replace # with the live TFS URL -->
+            <a class="btn btn--ghost" href="#" data-placeholder-link>View Project</a>
+          </div>
+          <div class="project__devices" aria-label="TFS website previews">
+            <figure class="device device--desktop">
+              <!-- TODO: replace "tfs" with the real domain -->
+              <div class="device__bar" aria-hidden="true"><i></i><i></i><i></i><span>tfs</span></div>
+              <div class="device__screen">
+                <img src="assets/portfolio/tfs-desktop.jpg" alt="TFS website on a desktop screen, showing the YAH WEH hoodie reveal" loading="lazy" data-fallback="Desktop screenshot">
+              </div>
+            </figure>
+            <figure class="device device--phone">
+              <div class="device__screen">
+                <img src="assets/portfolio/tfs-mobile.jpg" alt="TFS website on a phone, showing the YAH WEH hoodie reveal" loading="lazy" data-fallback="Mobile screenshot">
+              </div>
+            </figure>
+          </div>
+        </article>
+
+        <a class="project project--next" href="#contact">
+          <span class="project--next__title">Your business could be next.</span>
+          <span class="project--next__text">Tell us what you’re picturing and we’ll show you what it could look like.</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ============ PROCESS ============ -->
+    <section class="section" id="process" aria-labelledby="process-title">
+      <div class="container">
+        <header class="section__head">
+          <h2 class="section__title reveal" id="process-title">Your Vision. Our Process.</h2>
+          <p class="section__intro">Five clear steps, so you always know what happens next.</p>
+        </header>
+        <ol class="process">
+          <li class="process__step"><span class="process__num">01</span><h3>Discover</h3><p>We learn about your business, audience, goals, and vision.</p></li>
+          <li class="process__step"><span class="process__num">02</span><h3>Design</h3><p>We develop a visual direction that reflects your brand and user experience.</p></li>
+          <li class="process__step"><span class="process__num">03</span><h3>Build</h3><p>We turn approved designs into a functional, responsive website.</p></li>
+          <li class="process__step"><span class="process__num">04</span><h3>Launch</h3><p>We test, refine, and prepare your site for the public.</p></li>
+          <li class="process__step"><span class="process__num">05</span><h3>Support</h3><p>We help maintain, improve, and expand your site as your business grows.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ PRICING ============ -->
+    <section class="section section--alt" id="pricing" aria-labelledby="pricing-title">
+      <div class="container">
+        <header class="section__head">
+          <h2 class="section__title reveal" id="pricing-title">Price Your Website.</h2>
+          <p class="section__intro">Pick a package and any extras to see an estimate instantly. Animation is included in every package, and standard delivery is usually within a week.</p>
+        </header>
+
+        <!-- Prices live here and in js/sections.js (PACKAGES, EXTRAS, CARE). Keep both in sync. -->
+        <div class="estimator">
+          <div class="estimator__options">
+            <fieldset class="est-group">
+              <legend>Package</legend>
+              <div class="packages">
+                <label class="package">
+                  <input type="radio" name="est-package" value="starter" checked>
+                  <span class="package__box">
+                    <span class="package__name">Starter</span>
+                    <span class="package__price">$200–$400</span>
+                    <span class="package__list"><span>Up to 3 pages</span><span>Mobile-ready</span><span>Contact form</span><span>Basic SEO</span></span>
+                    <span class="package__motion">Light motion</span>
+                  </span>
+                </label>
+                <label class="package package--popular">
+                  <input type="radio" name="est-package" value="business">
+                  <span class="package__box">
+                    <span class="package__badge">Most popular</span>
+                    <span class="package__name">Business</span>
+                    <span class="package__price">$600</span>
+                    <span class="package__lead">Everything in Starter, plus:</span>
+                    <span class="package__list"><span>Up to 6 pages</span><span>Editable content</span><span>Google Analytics, Search &amp; Maps set up for you</span><span>Live dashboard that updates itself</span></span>
+                    <span class="package__motion">Signature animation</span>
+                  </span>
+                </label>
+                <label class="package">
+                  <input type="radio" name="est-package" value="custom">
+                  <span class="package__box">
+                    <span class="package__name">Custom</span>
+                    <span class="package__price">$800+</span>
+                    <span class="package__lead">Everything in Business, plus:</span>
+                    <span class="package__list"><span>Online stores</span><span>Custom dashboards</span><span>Custom features</span></span>
+                    <span class="package__motion">Cinematic animation</span>
+                  </span>
+                </label>
+              </div>
+              <div class="why-biz">
+                <svg viewBox="0 0 32 32" aria-hidden="true"><rect x="4" y="5" width="24" height="22" rx="2"/><path d="M4 11h24M9 22v-4M14 22v-7M19 22v-5M24 22v-9"/></svg>
+                <p><b>Why Business is worth it:</b> it's the package that shows you who's finding you. Every Business order comes with Google set up and a live dashboard of your visitors, searches, and calls, so you know your site is working. <a href="#dashboard">See the dashboard</a></p>
+              </div>
+            </fieldset>
+
+            <fieldset class="est-group">
+              <legend>Animation included</legend>
+              <div class="motion-demo" data-level="starter" data-motion aria-hidden="true">
+                <!-- The same sample page, animated the way each package would animate it (see css/animations.css) -->
+                <canvas class="md-fx"></canvas>
+                <div class="md-stage">
+                  <div class="md-site">
+                    <span class="md-glow"></span>
+                    <div class="md-bar"><b>Rise Bakery</b><span><i></i><i></i><i></i></span></div>
+                    <div class="md-hero">
+                      <p class="md-h"><span>Fresh</span> <span>bread,</span> <span>every</span> <span>morning</span></p>
+                      <p class="md-sub">Order by 9pm, pick up at 7am.</p>
+                      <span class="md-btn">Order now</span>
+                    </div>
+                    <div class="md-cards"><span>Sourdough</span><span>Croissants</span><span>Rolls</span></div>
+                  </div>
+                </div>
+                <span class="md-cursor"></span>
+                <span class="md-tag">Starter · light motion</span>
+              </div>
+              <p class="motion-demo__cap" aria-live="polite"></p>
+            </fieldset>
+
+            <fieldset class="est-group">
+              <legend>Add-ons</legend>
+              <p class="est-help"><a href="#extras">Not sure what these are? See each add-on in action.</a></p>
+              <div class="choices">
+                <label class="choice"><span><input type="checkbox" name="est-extra" value="ordering">Online ordering or booking</span><em>+$150–$300</em></label>
+                <label class="choice"><span><input type="checkbox" name="est-extra" value="reviews">Reviews &amp; QR code kit</span><em>+$75–$150</em></label>
+                <label class="choice"><span><input type="checkbox" name="est-extra" value="app">Your own phone app</span><em>+$150–$250</em></label>
+                <label class="choice"><span><input type="checkbox" name="est-extra" value="rush">Rush delivery in 3 days</span><em>+20%</em></label>
+              </div>
+            </fieldset>
+
+            <fieldset class="est-group">
+              <legend>Extra pages <span class="est-legend-note">$50–$75 each</span></legend>
+              <div class="range-row">
+                <input type="range" id="est-pages" min="0" max="10" step="1" value="0" aria-describedby="est-pages-out">
+                <output id="est-pages-out" for="est-pages">0 pages</output>
+              </div>
+            </fieldset>
+
+            <fieldset class="est-group">
+              <legend>Monthly care plan</legend>
+              <div class="choices">
+                <label class="choice"><span><input type="radio" name="est-care" value="none" checked>No plan</span><em>$0</em></label>
+                <label class="choice"><span><input type="radio" name="est-care" value="basic">Basic: hosting, backups, security</span><em>$49/mo</em></label>
+                <label class="choice"><span><input type="radio" name="est-care" value="plus">Plus: Basic and up to 2 hours of edits</span><em>$99/mo</em></label>
+              </div>
+            </fieldset>
+          </div>
+
+          <aside class="quote" aria-labelledby="quote-title">
+            <h3 class="quote__title" id="quote-title">Your estimate</h3>
+            <div aria-live="polite">
+              <p class="quote__total">$200–$400</p>
+              <p class="quote__monthly">One-time payment</p>
+            </div>
+            <ul class="quote__lines"></ul>
+            <p class="quote__delivery">Delivery: usually within a week</p>
+            <a class="btn btn--primary quote__send" href="#contact">Send me this quote</a>
+            <p class="quote__fine">This fills in the inquiry form below. Nothing is sent until you submit it.</p>
+          </aside>
+        </div>
+        <p class="pricing__note">Estimates only. Your final quote comes after a free consultation. Domain, paid apps, and payment-processing fees are separate.</p>
+      </div>
+    </section>
+
+    <!-- ============ ADD-ONS ============ -->
+    <section class="section" id="extras" aria-labelledby="extras-title">
+      <div class="container">
+        <header class="section__head">
+          <h2 class="section__title reveal" id="extras-title">Add-Ons That Grow Your Business.</h2>
+          <p class="section__intro">Optional upgrades you can add to any package. Pick one to see it in action. The previews are live, so try them. The businesses in them are samples, not clients.</p>
+        </header>
+        <div class="xp" data-motion>
+          <div class="xp__tabs" role="tablist" aria-label="Add-ons" aria-orientation="vertical">
+            <button class="xp__tab" type="button" role="tab" id="xt-ord" aria-controls="xp-ord" aria-selected="true">Online ordering<small>+$150–$300</small></button>
+            <button class="xp__tab" type="button" role="tab" id="xt-rev" aria-controls="xp-rev" aria-selected="false" tabindex="-1">Reviews &amp; QR code kit<small>+$75–$150</small></button>
+            <button class="xp__tab" type="button" role="tab" id="xt-app" aria-controls="xp-app" aria-selected="false" tabindex="-1">Your own phone app<small>+$150–$250</small></button>
+            <button class="xp__tab" type="button" role="tab" id="xt-rush" aria-controls="xp-rush" aria-selected="false" tabindex="-1">Rush delivery<small>+20%</small></button>
+            <button class="xp__tab" type="button" role="tab" id="xt-pages" aria-controls="xp-pages" aria-selected="false" tabindex="-1">Extra pages<small>$50–$75 each</small></button>
+            <button class="xp__tab" type="button" role="tab" id="xt-care" aria-controls="xp-care" aria-selected="false" tabindex="-1">Care plans<small>$49 or $99/month</small></button>
+          </div>
+
+          <div class="xp__panel" role="tabpanel" id="xp-ord" aria-labelledby="xt-ord" tabindex="0">
+            <div class="xp__text">
+              <h3>Online ordering or booking</h3>
+              <p class="xp__price">+$150–$300</p>
+              <p>Customers order food, buy products, or book appointments right on your site, instead of calling or sending DMs.</p>
+              <ul><li>A menu or product list with prices</li><li>A cart, or a calendar for booking times</li><li>Order and booking alerts sent to your phone or email</li><li>Payments through Square, Stripe, or PayPal (their fees are separate)</li></ul>
+            </div>
+            <div class="xprev xprev--light xprev--ord">
+              <div class="xw-bar"><i></i><i></i><i></i><span>risebakery.com/order</span></div>
+              <div class="xw-body">
+                <div class="o-head"><div><b>Order for pickup</b><small>Rise Bakery · sample store</small></div><span class="o-cart" aria-live="polite">0 items · $0.00</span></div>
+                <ul class="o-list">
+                  <li class="o-item"><span class="o-thumb"></span><span class="o-name">Sourdough loaf<small>Naturally leavened</small></span><span class="o-price">$9.00</span><button type="button" data-add="9" aria-label="Add sourdough loaf to sample cart">Add</button></li>
+                  <li class="o-item"><span class="o-thumb o-thumb--2"></span><span class="o-name">Croissant<small>Laminated by hand</small></span><span class="o-price">$4.00</span><button type="button" data-add="4" aria-label="Add croissant to sample cart">Add</button></li>
+                  <li class="o-item"><span class="o-thumb o-thumb--3"></span><span class="o-name">Cinnamon roll<small>Brown-butter glaze</small></span><span class="o-price">$5.00</span><button type="button" data-add="5" aria-label="Add cinnamon roll to sample cart">Add</button></li>
+                </ul>
+                <div class="o-book"><small>Pickup time tomorrow</small><div class="o-slots" role="group" aria-label="Sample pickup time"><button type="button" aria-pressed="false">7:00</button><button type="button" aria-pressed="true">7:30</button><button type="button" aria-pressed="false">8:00</button><button type="button" aria-pressed="false">8:30</button></div></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="xp__panel" role="tabpanel" id="xp-rev" aria-labelledby="xt-rev" tabindex="0" hidden>
+            <div class="xp__text">
+              <h3>Reviews &amp; QR code kit</h3>
+              <p class="xp__price">+$75–$150</p>
+              <p>More 5-star reviews bring in more customers. Happy customers scan a code at your counter and land right on your Google review page, with no searching.</p>
+              <ul><li>A QR code that opens your Google review page</li><li>Print-ready table card, counter sign, and sticker</li><li>A “Leave a review” button on your website</li><li>Your best reviews shown on your site</li></ul>
+            </div>
+            <div class="xprev xprev--light xprev--rev">
+              <div class="xw-bar"><i></i><i></i><i></i><span>Review kit · Rise Bakery</span></div>
+              <div class="xw-body">
+                <div class="rv-wrap">
+                  <div class="rv-card">
+                    <small class="rv-brand">Rise Bakery</small>
+                    <b>Enjoyed your visit?</b>
+                    <span class="rv-stars" aria-hidden="true">★★★★★</span>
+                    <img src="assets/images/qr-tremax.svg" alt="Sample QR code. Scanning it opens the TREMAX Digital website." width="104" height="104" loading="lazy">
+                    <small>Scan to leave us a Google review</small>
+                  </div>
+                  <div class="rv-phone">
+                    <small class="rv-step">After they scan</small>
+                    <b>Rate Rise Bakery</b>
+                    <div class="rv-rate" role="radiogroup" aria-label="Sample star rating">
+                      <button type="button" role="radio" aria-checked="false" aria-label="1 star">★</button><button type="button" role="radio" aria-checked="false" aria-label="2 stars">★</button><button type="button" role="radio" aria-checked="false" aria-label="3 stars">★</button><button type="button" role="radio" aria-checked="false" aria-label="4 stars">★</button><button type="button" role="radio" aria-checked="false" aria-label="5 stars">★</button>
+                    </div>
+                    <span class="rv-box">Share details of your visit…</span>
+                    <span class="rv-post">Post</span>
+                    <p class="rv-msg" aria-live="polite">Tap a star to try it.</p>
+                  </div>
+                </div>
+                <div class="rv-show"><span class="rv-score">4.9</span><span><span class="rv-stars" aria-hidden="true">★★★★★</span><small>128 Google reviews · shown on your website</small></span><span class="rv-sample">Sample</span></div>
+                <p class="rv-try">Try the code: point your phone camera at it. This sample opens our website.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="xp__panel" role="tabpanel" id="xp-app" aria-labelledby="xt-app" tabindex="0" hidden>
+            <div class="xp__text">
+              <h3>Your own phone app</h3>
+              <p class="xp__price">+$150–$250</p>
+              <p>Customers add your site to their home screen with one tap. Your logo sits right next to their other apps, and it opens full-screen like an app. No app store, no download. Watch the demo, then try it yourself on the phone.</p>
+              <ul><li>Your logo as an app icon on their phone</li><li>Opens full-screen, without the browser bar</li><li>Loads fast, and your menu still shows on a weak signal</li><li>Works on iPhone and Android</li><li>No app store approval or yearly developer fees</li></ul>
+            </div>
+            <div class="xprev xprev--app">
+              <div class="xw-bar"><i></i><i></i><i></i><span>On a customer's phone · sample</span></div>
+              <div class="xw-body">
+                <div class="ap-row">
+                  <div class="ap-phone" data-step="browser">
+                    <div class="ap-screen">
+                      <div class="ap-status" aria-hidden="true"><span>9:41</span><span>●●● ▮</span></div>
+
+                      <!-- 1. the site in the phone's browser -->
+                      <div class="ap-view ap-browser">
+                        <div class="ap-site" aria-hidden="true">
+                          <div class="ap-site__bar"><b>Rise Bakery</b><span>☰</span></div>
+                          <div class="ap-hero"><b>Fresh bread, every morning</b><small>Order by 9pm, pick up at 7am.</small><span class="ap-hero__btn">Order for pickup</span></div>
+                          <div class="ap-cards"><span>Sourdough</span><span>Croissants</span></div>
+                        </div>
+                        <div class="ap-url">
+                          <span class="ap-url__addr">risebakery.com</span>
+                          <button type="button" class="ap-share" data-go="sheet" aria-label="Share">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7.5 7.5 12 3l4.5 4.5M6 11H5v10h14V11h-1"/></svg>
+                          </button>
+                        </div>
+                      </div>
+
+                      <!-- 2. share sheet -->
+                      <div class="ap-sheet">
+                        <div class="ap-sheet__head"><span class="ap-logo">R</span><span>Rise Bakery<small>risebakery.com</small></span></div>
+                        <span class="ap-sheet__opt">Copy link</span>
+                        <button type="button" class="ap-sheet__opt ap-sheet__opt--add" data-go="home">Add to Home Screen <span aria-hidden="true">⊕</span></button>
+                      </div>
+
+                      <!-- 3. home screen -->
+                      <div class="ap-view ap-home">
+                        <div class="ap-grid">
+                          <span class="ap-ic" style="--c:#4F7CAC"></span><span class="ap-ic" style="--c:#6B8F71"></span><span class="ap-ic" style="--c:#B5838D"></span><span class="ap-ic" style="--c:#8D7B68"></span>
+                          <span class="ap-ic" style="--c:#5C6B7A"></span><span class="ap-ic" style="--c:#7A6C9A"></span><span class="ap-ic" style="--c:#A0855B"></span><span class="ap-ic" style="--c:#4E8C8A"></span>
+                          <span class="ap-ic" style="--c:#8A5A5A"></span><span class="ap-ic" style="--c:#5E7D5A"></span><span class="ap-ic" style="--c:#6F6F86"></span>
+                          <button type="button" class="ap-new" data-go="splash" aria-label="Open Rise Bakery app"><span class="ap-logo">R</span><small>Rise</small></button>
+                        </div>
+                        <div class="ap-dock" aria-hidden="true"><span class="ap-ic" style="--c:#3E8E5E"></span><span class="ap-ic" style="--c:#3B6FB6"></span><span class="ap-ic" style="--c:#C2703D"></span><span class="ap-ic" style="--c:#5D5D73"></span></div>
+                      </div>
+
+                      <!-- 4. launch screen -->
+                      <div class="ap-view ap-splash" aria-hidden="true"><span class="ap-logo">R</span><b>Rise Bakery</b></div>
+
+                      <!-- 5. the app -->
+                      <div class="ap-view ap-app">
+                        <div class="ap-app__top"><b class="ap-app__title">Rise Bakery</b><button type="button" class="ap-bag" data-tab="order" aria-label="Your order"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1 12H6zM9 8a3 3 0 0 1 6 0"/></svg><span class="ap-bag__n">0</span></button></div>
+                        <div class="ap-pages">
+                          <section class="ap-page" data-page="home">
+                            <div class="ap-hero"><b>Fresh bread, every morning</b><small>Order by 9pm, pick up at 7am.</small><button type="button" class="ap-hero__btn" data-tab="menu">Order for pickup</button></div>
+                            <p class="ap-label">Today's special</p>
+                            <div class="ap-special"><span class="ap-thumb ap-thumb--3"></span><span>Cinnamon roll<small>Brown-butter glaze · $5.00</small></span></div>
+                          </section>
+                          <section class="ap-page" data-page="menu" hidden>
+                            <p class="ap-label">Menu</p>
+                            <ul class="ap-menu">
+                              <li><span class="ap-thumb"></span><span>Sourdough loaf<small>$9.00</small></span><button type="button" data-item="Sourdough loaf" data-price="9" aria-label="Add sourdough loaf">+</button></li>
+                              <li><span class="ap-thumb ap-thumb--2"></span><span>Croissant<small>$4.00</small></span><button type="button" data-item="Croissant" data-price="4" aria-label="Add croissant">+</button></li>
+                              <li><span class="ap-thumb ap-thumb--3"></span><span>Cinnamon roll<small>$5.00</small></span><button type="button" data-item="Cinnamon roll" data-price="5" aria-label="Add cinnamon roll">+</button></li>
+                            </ul>
+                          </section>
+                          <section class="ap-page" data-page="order" hidden>
+                            <p class="ap-label">Your order</p>
+                            <ul class="ap-lines"></ul>
+                            <p class="ap-total"><span>Total</span><b>$0.00</b></p>
+                            <button type="button" class="ap-place" disabled>Place pickup order</button>
+                            <div class="ap-done" hidden><b>Order placed!</b><small>Ready tomorrow at 7:30am.</small></div>
+                          </section>
+                          <section class="ap-page" data-page="visit" hidden>
+                            <p class="ap-label">Visit us</p>
+                            <ul class="ap-hours"><li><span>Mon to Fri</span><b>6am to 3pm</b></li><li><span>Saturday</span><b>6am to 4pm</b></li><li><span>Sunday</span><b>7am to 1pm</b></li></ul>
+                            <div class="ap-map" aria-hidden="true"><i></i></div>
+                            <div class="ap-visit-btns"><span>Get directions</span><span>Call us</span></div>
+                          </section>
+                        </div>
+                        <nav class="ap-tabs" aria-label="Sample app">
+                          <button type="button" data-tab="home" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11 12 4l8 7v9h-5v-6H9v6H4z"/></svg>Home</button>
+                          <button type="button" data-tab="menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 6h14M5 12h14M5 18h9"/></svg>Menu</button>
+                          <button type="button" data-tab="order"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1 12H6zM9 8a3 3 0 0 1 6 0"/></svg>Order</button>
+                          <button type="button" data-tab="visit"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.5-7-12a7 7 0 0 1 14 0c0 5.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>Visit</button>
+                        </nav>
+                      </div>
+
+                      <span class="ap-finger" aria-hidden="true"></span>
+                    </div>
+                  </div>
+
+                  <div class="ap-side">
+                    <ol class="ap-guide">
+                      <li data-s="browser">A customer opens your site</li>
+                      <li data-s="sheet">They tap Share, then “Add to Home Screen”</li>
+                      <li data-s="home">Your icon lands on their phone</li>
+                      <li data-s="app">One tap opens it like an app</li>
+                    </ol>
+                    <button type="button" class="ap-btn" data-ap="demo">▶ Watch the demo</button>
+                    <button type="button" class="ap-reset" data-ap="reset">Start over</button>
+                    <p class="ap-msg" aria-live="polite">Tap inside the phone to try it yourself.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="xp__panel" role="tabpanel" id="xp-rush" aria-labelledby="xt-rush" tabindex="0" hidden>
+            <div class="xp__text">
+              <h3>Rush delivery</h3>
+              <p class="xp__price">+20% of your total</p>
+              <p>Need it fast? Your project moves to the front of the line and launches within 3 days instead of about a week.</p>
+              <ul><li>Great for grand openings, events, and product drops</li><li>Same quality, just prioritized</li><li>Quick feedback from you keeps it on schedule</li></ul>
+            </div>
+            <div class="xprev xprev--rush">
+              <div class="xw-bar"><i></i><i></i><i></i><span>Project timeline</span></div>
+              <div class="xw-body">
+                <div class="r-grid">
+                  <span></span><div class="r-scale"><span>D1</span><span>D2</span><span>D3</span><span>D4</span><span>D5</span><span>D6</span><span>D7</span></div>
+                  <span class="r-label">Standard<small>About a week</small></span><div class="r-track"><span class="r-bar r-std"><i></i><i></i><i></i></span></div>
+                  <span class="r-label">Rush<small>3 days</small></span><div class="r-track"><span class="r-bar r-fast"><i></i><i></i><i></i></span></div>
+                </div>
+                <div class="r-legend"><span><i class="r-k1"></i>Design</span><span><i class="r-k2"></i>Build</span><span><i class="r-k3"></i>Launch</span></div>
+                <p class="r-live">Rush launches about 4 days sooner</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="xp__panel" role="tabpanel" id="xp-pages" aria-labelledby="xt-pages" tabindex="0" hidden>
+            <div class="xp__text">
+              <h3>Extra pages</h3>
+              <p class="xp__price">$50–$75 per page</p>
+              <p>Starter covers up to 3 pages and Business covers up to 6. Need more? Add them one at a time.</p>
+              <ul><li>Full menu or price list</li><li>Photo gallery</li><li>FAQ</li><li>Meet the team</li><li>Blog or news</li><li>Policies, like shipping and returns</li></ul>
+            </div>
+            <div class="xprev xprev--pages">
+              <div class="xw-bar"><i></i><i></i><i></i><span>Sitemap</span></div>
+              <div class="xw-body">
+                <p class="pg-label">Included in Starter</p>
+                <div class="pg-row"><span class="pg"><i class="pg-wf pg-wf--img"></i><b>Home</b></span><span class="pg"><i class="pg-wf"></i><b>About</b></span><span class="pg"><i class="pg-wf"></i><b>Contact</b></span></div>
+                <p class="pg-label">Add-on pages <span>$50–$75 each</span></p>
+                <div class="pg-row">
+                  <span class="pg pg--add"><i class="pg-wf"></i><b>Menu</b></span><span class="pg pg--add"><i class="pg-wf pg-wf--grid"></i><b>Gallery</b></span><span class="pg pg--add"><i class="pg-wf"></i><b>FAQ</b></span>
+                  <span class="pg pg--add"><i class="pg-wf pg-wf--grid"></i><b>Team</b></span><span class="pg pg--add"><i class="pg-wf pg-wf--img"></i><b>Blog</b></span><span class="pg pg--add"><i class="pg-wf"></i><b>Policies</b></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="xp__panel" role="tabpanel" id="xp-care" aria-labelledby="xt-care" tabindex="0" hidden>
+            <div class="xp__text">
+              <h3>Care plans</h3>
+              <p class="xp__price">$49 or $99 a month</p>
+              <p><strong>Basic, $49/month:</strong> we host your site, keep it secure, back it up, and fix anything that breaks.</p>
+              <p><strong>Plus, $99/month:</strong> everything in Basic, plus up to 2 hours of changes every month, like new prices, photos, specials, or announcements.</p>
+              <p>Every month you get a quick report so you know your site is healthy.</p>
+            </div>
+            <div class="xprev xprev--care">
+              <div class="xw-bar"><i></i><i></i><i></i><span>Monthly site report · sample</span></div>
+              <div class="xw-body">
+                <div class="cr-head"><span><b>Rise Bakery</b><small>October · Plus plan</small></span><span class="cr-status">All systems normal</span></div>
+                <div class="cr-kpis"><div><small>Uptime</small><b>100%</b></div><div><small>Backups</small><b>30/30</b></div><div><small>Updates</small><b>4</b></div></div>
+                <div class="cr-use"><span>Edit time used</span><b>1h of 2h</b><span class="cr-track"><i class="cr-fill"></i></span></div>
+                <ul class="cr-log"><li><time>Oct 4</time>Holiday hours added</li><li><time>Oct 18</time>New menu item added</li><li><time>Oct 21</time>Security updates applied</li></ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ DASHBOARD (Business package) ============ -->
+    <!-- The numbers in this sample are made up to show the layout. Keep the "Sample data" label. -->
+    <section class="section section--alt" id="dashboard" aria-labelledby="dashboard-title">
+      <div class="container">
+        <header class="section__head">
+          <h2 class="section__title reveal" id="dashboard-title">See How Your Site Is Doing.</h2>
+          <p class="section__intro">Included automatically with every Business order. We set up Google for you and hand you one simple dashboard, so you can see who's finding you without digging through five different apps.</p>
+        </header>
+
+        <ol class="dash-how">
+          <li>
+            <svg class="dash-how__icon" viewBox="0 0 32 32" aria-hidden="true"><circle cx="12" cy="11" r="4"/><path d="M4 26c0-4.4 3.6-8 8-8s8 3.6 8 8M21 8a4 4 0 0 1 0 8M24 19c2.4 1 4 3.6 4 7"/></svg>
+            <b>Google Analytics</b><span>Counts your visitors, which pages they look at, and where they came from.</span>
+          </li>
+          <li>
+            <svg class="dash-how__icon" viewBox="0 0 32 32" aria-hidden="true"><circle cx="14" cy="14" r="8"/><path d="M20 20l7 7M10 14h8M14 10v8"/></svg>
+            <b>Google Search Console</b><span>Shows the Google searches your site appeared in, and how often people clicked through.</span>
+          </li>
+          <li>
+            <svg class="dash-how__icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 29s-9-8.5-9-15a9 9 0 0 1 18 0c0 6.5-9 15-9 15z"/><circle cx="16" cy="14" r="3.5"/></svg>
+            <b>Google Business Profile</b><span>Puts you on Google Maps and tracks calls and direction requests.</span>
+          </li>
+          <li>
+            <svg class="dash-how__icon" viewBox="0 0 32 32" aria-hidden="true"><rect x="4" y="5" width="24" height="22" rx="2"/><path d="M4 11h24M9 22v-4M14 22v-7M19 22v-5M24 22v-9"/></svg>
+            <b>One dashboard</b><span>We connect all three into one page (built with Google's free Looker Studio) that you can open on your phone any time.</span>
+          </li>
+        </ol>
+        <p class="dash-how__note">All free Google tools, set up in your name, so you own the accounts and the data. Here's a preview, or <a href="dashboard.html">open the full sample dashboard</a> to click through every chart.</p>
+
+        <div class="dash" data-motion>
+          <div class="dash__top">
+            <div><b>Rise Bakery</b><small>Website report · May to October</small></div>
+            <span class="dash__sample">Sample data</span>
+          </div>
+
+          <div class="dash__kpis">
+            <div class="kpi"><small>Visitors in October</small><b>1,284</b><em><span aria-hidden="true">↑</span> 18% vs September</em><svg class="spark" data-trend="310,480,640,820,1090,1284" aria-hidden="true"></svg></div>
+            <div class="kpi"><small>Showed up in Google</small><b>4,920</b><em><span aria-hidden="true">↑</span> 25% vs September</em><svg class="spark" data-trend="820,1350,2110,2870,3940,4920" aria-hidden="true"></svg></div>
+            <div class="kpi"><small>Calls &amp; direction taps</small><b>96</b><em><span aria-hidden="true">↑</span> 12% vs September</em><svg class="spark" data-trend="31,44,58,70,86,96" aria-hidden="true"></svg></div>
+            <div class="kpi"><small>Contact form messages</small><b>23</b><em><span aria-hidden="true">↑</span> 5 more than September</em><svg class="spark" data-trend="6,9,12,15,18,23" aria-hidden="true"></svg></div>
+          </div>
+
+          <div class="dash__grid">
+            <figure class="dash__card">
+              <figcaption><b>Times the site showed up in Google searches</b><small>Per month, since launch</small></figcaption>
+              <div class="dash-chart" data-series="May:820,Jun:1350,Jul:2110,Aug:2870,Sep:3940,Oct:4920" role="img" aria-label="Line chart: Google search appearances grew every month, from 820 in May to 4,920 in October." tabindex="0"></div>
+              <details class="dash__table">
+                <summary>Show the numbers</summary>
+                <table>
+                  <thead><tr><th scope="col">Month</th><th scope="col">Showed up in Google</th><th scope="col">Visitors</th></tr></thead>
+                  <tbody><tr><td>May</td><td>820</td><td>310</td></tr><tr><td>June</td><td>1,350</td><td>480</td></tr><tr><td>July</td><td>2,110</td><td>640</td></tr><tr><td>August</td><td>2,870</td><td>820</td></tr><tr><td>September</td><td>3,940</td><td>1,090</td></tr><tr><td>October</td><td>4,920</td><td>1,284</td></tr></tbody>
+                </table>
+              </details>
+            </figure>
+
+            <figure class="dash__card">
+              <figcaption><b>Visitors per month</b><small>People who opened the site</small></figcaption>
+              <ul class="dash-cols" aria-label="Visitors per month">
+                <li style="--h:20.7%" tabindex="0"><i></i><em>May</em><b class="dash-cols__tip">310 visitors</b></li>
+                <li style="--h:32%" tabindex="0"><i></i><em>Jun</em><b class="dash-cols__tip">480 visitors</b></li>
+                <li style="--h:42.7%" tabindex="0"><i></i><em>Jul</em><b class="dash-cols__tip">640 visitors</b></li>
+                <li style="--h:54.7%" tabindex="0"><i></i><em>Aug</em><b class="dash-cols__tip">820 visitors</b></li>
+                <li style="--h:72.7%" tabindex="0"><i></i><em>Sep</em><b class="dash-cols__tip">1,090 visitors</b></li>
+                <li style="--h:85.6%" tabindex="0"><i></i><em>Oct</em><b class="dash-cols__tip">1,284 visitors</b><span class="dash-cols__val" aria-hidden="true">1,284</span></li>
+              </ul>
+            </figure>
+          </div>
+
+          <div class="dash__grid dash__grid--3">
+            <figure class="dash__card">
+              <figcaption><b>Where visitors came from</b><small>October</small></figcaption>
+              <ul class="dash-bars">
+                <li style="--v:52%"><span>Google search</span><i></i><b>52%</b></li>
+                <li style="--v:21%"><span>Instagram</span><i></i><b>21%</b></li>
+                <li style="--v:17%"><span>Typed the address</span><i></i><b>17%</b></li>
+                <li style="--v:10%"><span>Google Maps</span><i></i><b>10%</b></li>
+              </ul>
+            </figure>
+            <figure class="dash__card">
+              <figcaption><b>What they used</b><small>October</small></figcaption>
+              <ul class="dash-dev">
+                <li style="--v:68%">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2"/><path d="M11 18.5h2"/></svg>
+                  <span>Phone</span><b>68%</b><i></i>
+                </li>
+                <li style="--v:27%">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M8 20h8M12 16v4"/></svg>
+                  <span>Computer</span><b>27%</b><i></i>
+                </li>
+                <li style="--v:5%">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="2.5" width="14" height="19" rx="2"/><path d="M11 18.5h2"/></svg>
+                  <span>Tablet</span><b>5%</b><i></i>
+                </li>
+              </ul>
+            </figure>
+            <figure class="dash__card">
+              <figcaption><b>Top searches that found you</b><small>October</small></figcaption>
+              <ol class="dash-searches">
+                <li><span>bakery near me</span><b>1,140</b></li>
+                <li><span>sourdough bread</span><b>860</b></li>
+                <li><span>rise bakery hours</span><b>410</b></li>
+                <li><span>croissants downtown</span><b>285</b></li>
+              </ol>
+            </figure>
+          </div>
+        </div>
+        <div class="dash__cta">
+          <p><b>Get this with your site.</b> Included in Business ($600) and Custom.</p>
+          <div class="dash__cta-btns">
+            <a class="btn btn--ghost" href="dashboard.html">Explore the full sample dashboard</a>
+            <a class="btn btn--primary" href="#pricing" data-pick-package="business">Choose Business</a>
+          </div>
+        </div>
+        <p class="dash__fine">This is a sample to show what the dashboard looks like, not a real client. Every business grows at its own pace, and search traffic usually builds over a few months.</p>
+      </div>
+    </section>
+
+    <!-- ============ ABOUT ============ -->
+    <section class="section section--line" id="about" aria-labelledby="about-title">
+      <div class="container about">
+        <div>
+          <h2 class="section__title reveal" id="about-title">Built on Vision. Driven by Innovation.</h2>
+          <blockquote class="about__quote">“We believe every great business deserves a digital presence that reflects its potential.”</blockquote>
+        </div>
+        <div class="about__body">
+          <p>TREMAX Digital exists to help entrepreneurs and businesses bring their ideas to life through thoughtful design and reliable technology. Whether you run a café, a clothing line, a barbershop, or a brand that’s just getting started, we build the site your business actually needs, not a template with your name dropped in.</p>
+          <p>We work closely with every client, explain things in plain language, and keep building with you after launch. Good work comes from collaboration, attention to detail, and sites that everyone can use, including people using screen readers or slow phones.</p>
+          <div class="about__founder">
+            <p class="about__founder-label">From the founder</p>
+            <p>“At TREMAX Digital, innovation drives us, creativity defines us, and fun is part of the journey. We’re not here to simply provide a service. We’re here to build meaningful relationships, bring visions to life, and grow alongside our clients and communities.”</p>
+            <p class="about__sign">Tre-lawn Noel, Founder of TREMAX Digital</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section class="section section--contact" id="contact" aria-labelledby="contact-title">
+      <div class="container contact">
+        <div class="contact__intro">
+          <h2 class="section__title reveal" id="contact-title">Your Next Big Idea Starts Here.</h2>
+          <p class="section__intro">Tell us what you’re envisioning. We’ll help you turn it into something real.</p>
+          <dl class="contact__details">
+            <dt>Email</dt>
+            <!-- TODO: replace with your real business email -->
+            <dd><a href="mailto:hello@tremaxdigital.com">hello@tremaxdigital.com</a></dd>
+            <dt>Social</dt>
+            <!-- TODO: replace # with your real profile links -->
+            <dd class="contact__social"><a href="#" data-placeholder-link>Instagram</a><a href="#" data-placeholder-link>LinkedIn</a><a href="#" data-placeholder-link>TikTok</a></dd>
+          </dl>
+        </div>
+
+        <!-- Set data-endpoint to your Formspree (https://formspree.io/f/xxxx) or Web3Forms URL. See README. -->
+        <form class="form" id="inquiry-form" novalidate data-endpoint="https://formspree.io/f/YOUR_FORM_ID">
+          <div class="form__grid">
+            <div class="field">
+              <label for="f-name">Full name</label>
+              <input id="f-name" name="name" type="text" autocomplete="name" required>
+              <p class="field__error" id="f-name-err"></p>
+            </div>
+            <div class="field">
+              <label for="f-business">Business name</label>
+              <input id="f-business" name="business" type="text" autocomplete="organization" required>
+              <p class="field__error" id="f-business-err"></p>
+            </div>
+            <div class="field">
+              <label for="f-email">Email address</label>
+              <input id="f-email" name="email" type="email" autocomplete="email" required>
+              <p class="field__error" id="f-email-err"></p>
+            </div>
+            <div class="field">
+              <label for="f-phone">Phone number <span class="optional">(optional)</span></label>
+              <input id="f-phone" name="phone" type="tel" autocomplete="tel">
+              <p class="field__error" id="f-phone-err"></p>
+            </div>
+            <div class="field">
+              <label for="f-industry">Business industry</label>
+              <select id="f-industry" name="industry" required>
+                <option value="">Choose one</option>
+                <option>Restaurant or café</option><option>Clothing or fashion brand</option>
+                <option>Beauty salon or barbershop</option><option>Professional services</option>
+                <option>Ecommerce</option><option>Independent creator</option>
+                <option>Startup</option><option>Other</option>
+              </select>
+              <p class="field__error" id="f-industry-err"></p>
+            </div>
+            <div class="field">
+              <label for="f-service">Service requested</label>
+              <select id="f-service" name="service" required>
+                <option value="">Choose one</option>
+                <option>Website design &amp; development</option><option>Restaurant digital solutions</option>
+                <option>Ecommerce &amp; online store</option><option>Analytics &amp; dashboards</option>
+                <option>Maintenance &amp; optimization</option><option>Business automation</option>
+                <option>Not sure yet</option>
+              </select>
+              <p class="field__error" id="f-service-err"></p>
+            </div>
+            <div class="field">
+              <label for="f-package">Preferred package</label>
+              <select id="f-package" name="package">
+                <option value="unsure">Not sure yet</option>
+                <option value="starter">Starter ($200–$400)</option>
+                <option value="business">Business ($600, includes Google dashboard)</option>
+                <option value="custom">Custom ($800+)</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="f-budget">Estimated budget</label>
+              <select id="f-budget" name="budget">
+                <option value="Not sure yet">Not sure yet</option>
+                <option value="$200–$400">$200–$400</option>
+                <option value="$400–$700">$400–$700</option>
+                <option value="$700–$1,000">$700–$1,000</option>
+                <option value="$1,000–$1,500">$1,000–$1,500</option>
+                <option value="Over $1,500">Over $1,500</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="f-date">Desired launch date</label>
+              <input id="f-date" name="launch_date" type="date">
+            </div>
+            <div class="field field--full">
+              <label for="f-desc">Project description</label>
+              <textarea id="f-desc" name="description" rows="5" required placeholder="What does your business do, and what do you want the site to help with?"></textarea>
+              <p class="field__error" id="f-desc-err"></p>
+            </div>
+            <!-- Spam trap: real people never see or fill this field. -->
+            <div class="hp" aria-hidden="true"><label for="f-gotcha">Leave this empty</label><input id="f-gotcha" type="text" name="_gotcha" tabindex="-1" autocomplete="off"></div>
+          </div>
+          <div class="form__footer">
+            <button class="btn btn--primary form__submit" type="submit"><span class="form__label">Send inquiry</span></button>
+            <p class="form__status" role="status" aria-live="polite"></p>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <a class="brand" href="#home" aria-label="TREMAX Digital, back to top">
+        <svg class="brand__mark" viewBox="0 0 100 100" aria-hidden="true"><g fill="none" stroke="url(#txNav)" stroke-width="9"><path d="M12 16H88"/><path d="M50 16V59"/><path d="M24 30L76 88"/><path d="M76 30L24 88"/></g></svg>
+        <span class="brand__text"><span class="brand__name">TREMAX</span><span class="brand__sub">DIGITAL</span></span>
+      </a>
+      <p class="footer__tag">You Want. We Deliver.</p>
+      <nav class="footer__links" aria-label="Footer">
+        <a href="#services">Services</a><a href="#build">Live Build</a><a href="#work">Our Work</a><a href="#pricing">Pricing</a><a href="#about">About</a><a href="#contact">Contact</a>
+      </nav>
+      <p class="footer__copy">© <span data-year>2026</span> TREMAX Digital</p>
+      <button class="footer__replay" type="button">Replay intro</button>
+    </div>
+  </footer>
+
+  <button class="to-top" type="button" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+  </button>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="js/intro-animation.js"></script>
+  <script src="js/interactions.js"></script>
+  <script src="js/sections.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

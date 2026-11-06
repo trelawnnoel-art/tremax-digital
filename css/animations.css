@@ -1,0 +1,183 @@
+/* =========================================================
+   TREMAX Digital — animation styles
+   ========================================================= */
+
+/* ---------- Intro overlay ---------- */
+/* Hidden unless the inline head script decided it should play (so no-JS visitors never get stuck). */
+.intro {
+  position: fixed; inset: 0; z-index: 100;
+  background: var(--black);
+  display: none;
+  overflow: hidden;
+}
+.intro-playing .intro { display: block; }
+.intro-skipped .intro { display: none; }
+.intro-playing body { overflow: hidden; }
+.intro-playing .nav .brand { opacity: 0; }
+
+.intro__screen { position: absolute; inset: 0; display: grid; place-items: center; transform-origin: 50% 50%; }
+.intro__canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+.intro__lockup { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; text-align: center; padding: 0 16px; max-width: 100%; }
+.intro__slot { display: block; width: clamp(84px, 11vw, 132px); aspect-ratio: 1; }
+.intro__mark { position: absolute; left: 50%; top: 40%; z-index: 3; width: clamp(84px, 11vw, 132px); height: auto; overflow: visible; opacity: 0; }
+.intro__mark path { stroke-dasharray: 1; stroke-dashoffset: 1; }
+.intro__mark.is-glowing { filter: drop-shadow(0 0 18px rgba(59,145,245,.8)) drop-shadow(0 0 4px rgba(117,190,255,.9)); }
+.intro__word { margin-top: 26px; font: 700 clamp(2.5rem, 11vw, 5.25rem)/1 var(--font-display); letter-spacing: .06em; display: flex; justify-content: center; }
+.intro__word span { display: inline-block; opacity: 0; text-align: center; }
+.intro__digital { margin-top: 12px; font: 500 clamp(.8rem, 1.8vw, 1.05rem)/1 var(--font-display); color: var(--ice); letter-spacing: 0; opacity: 0; white-space: nowrap; }
+.intro__tagline { margin-top: 30px; min-height: 1.3em; font: 500 clamp(1rem, 2vw, 1.25rem)/1.3 var(--font-body); color: var(--slate); opacity: 0; white-space: nowrap; }
+.intro__cursor { display: inline-block; width: 2px; height: 1.1em; margin-left: 3px; vertical-align: -.18em; background: var(--ice); animation: caret 1s steps(1) infinite; }
+@keyframes caret { 50% { opacity: 0; } }
+
+/* the single glowing line the screen folds into */
+.intro__line {
+  position: absolute; left: 0; right: 0; top: 50%; height: 2px; margin-top: -1px; z-index: 2; opacity: 0;
+  background: linear-gradient(90deg, transparent, var(--ice) 25%, var(--white) 50%, var(--ice) 75%, transparent);
+  box-shadow: 0 0 18px 2px rgba(59,145,245,.85), 0 0 60px 6px rgba(59,145,245,.4);
+  pointer-events: none;
+}
+
+.intro__skip {
+  position: absolute; z-index: 3;
+  right: calc(20px + env(safe-area-inset-right, 0px));
+  bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+  min-height: 44px; padding: 0 18px;
+  background: rgba(16,26,43,.6); color: var(--slate);
+  border: 1px solid var(--line-strong); border-radius: 999px;
+  font: 500 .875rem/1 var(--font-body); cursor: pointer;
+  transition: color .2s, border-color .2s;
+}
+.intro__skip:hover, .intro__skip:focus-visible { color: var(--white); border-color: var(--ice); }
+
+/* ---------- Hero entrance (runs once the intro hands off) ---------- */
+.js .hero__title .line > span { transform: translateY(105%); transition: transform 1s var(--ease); }
+.js .hero__title .line--accent > span { transition-delay: .12s; }
+.js .hero__lede, .js .hero__actions, .js .hero__stage { opacity: 0; transition: opacity 1s var(--ease) .35s, transform 1s var(--ease) .35s; }
+.js .hero__lede, .js .hero__actions { transform: translateY(14px); }
+.js .hero__actions { transition-delay: .45s; }
+.js .hero__stage { transition-delay: .1s; }
+.hero-in .hero__title .line > span { transform: none; }
+.hero-in .hero__lede, .hero-in .hero__actions, .hero-in .hero__stage { opacity: 1; transform: none; }
+
+/* ---------- Section title wipe ---------- */
+.js .reveal { clip-path: inset(0 100% 0 0); transition: clip-path 1.1s var(--ease); }
+.js .reveal.is-in { clip-path: inset(0 -2% -12% 0); }
+
+/* ---------- Off-screen pause: js/sections.js adds .is-paused to [data-motion] blocks out of view ---------- */
+.is-paused, .is-paused * { animation-play-state: paused !important; }
+
+/* ---------- Services ticker ---------- */
+.ticker__track { animation: ticker 32s linear infinite; }
+@keyframes ticker { to { transform: translateX(-50%); } }
+
+/* ---------- Live build ---------- */
+.build__lines .cur { animation: caret 1s steps(1) infinite; }
+
+/* ---------- Pricing: "animation included" preview ----------
+   One sample page animated three ways. js/sections.js adds .run to play the example once,
+   holds it, fades it (.out) and replays it while it's on screen. */
+@keyframes mdFade { from { opacity: 0; transform: translateY(10px); } }
+@keyframes mdLift { 0%, 100% { transform: none; border-color: var(--line); box-shadow: none; } 25%, 75% { transform: translateY(-5px); border-color: var(--ice); box-shadow: 0 8px 18px -6px rgba(59,145,245,.7); } }
+@keyframes mdCursor { 0% { opacity: 0; left: 88%; top: 98%; } 20% { opacity: 1; } 45%, 75% { opacity: 1; left: 50%; top: 84%; } 100% { opacity: 0; left: 66%; top: 98%; } }
+@keyframes mdGlow { from { opacity: 0; transform: scale(.8); } to { opacity: 1; transform: none; } }
+@keyframes mdGlowDrift { 50% { transform: translate(14px, 6px) scale(1.08); } }
+@keyframes mdWord { from { opacity: 0; transform: translateY(80%); } }
+@keyframes mdSweep { 0% { left: -45%; opacity: 1; } 100% { left: 115%; opacity: 1; } }
+@keyframes mdPop { 0% { opacity: 0; transform: scale(.6); } 60% { opacity: 1; transform: scale(1.08); } 100% { transform: none; } }
+@keyframes mdPulse { 50% { box-shadow: 0 0 0 6px rgba(59,145,245,0), 0 0 22px rgba(59,145,245,.8); } }
+@keyframes mdSlide { from { opacity: 0; transform: translateY(24px) scale(.92); } }
+@keyframes mdUnfold { from { opacity: 0; transform: rotateX(68deg) scale(.75); filter: blur(4px); } 60% { opacity: 1; } to { opacity: 1; transform: none; filter: none; } }
+@keyframes mdBlurIn { from { opacity: 0; transform: scale(1.4); filter: blur(8px); } }
+@keyframes mdDepth { from { opacity: 0; transform: translateZ(-180px) translateY(-16px); } }
+
+/* Starter: light motion. Gentle fade-ins, then a cursor hovers a card and it lifts. */
+.run[data-level="starter"] .md-bar, .run[data-level="starter"] .md-hero > *, .run[data-level="starter"] .md-cards span { animation: mdFade .6s var(--ease) both; }
+.run[data-level="starter"] .md-h { animation-delay: .15s; }
+.run[data-level="starter"] .md-sub { animation-delay: .3s; }
+.run[data-level="starter"] .md-btn { animation-delay: .45s; }
+.run[data-level="starter"] .md-cards span:nth-child(1) { animation-delay: .6s; }
+.run[data-level="starter"] .md-cards span:nth-child(2) { animation: mdFade .6s var(--ease) .7s both, mdLift 1.6s ease-in-out 2.2s both; }
+.run[data-level="starter"] .md-cards span:nth-child(3) { animation-delay: .8s; }
+.run[data-level="starter"] .md-cursor { animation: mdCursor 2.6s ease-in-out 1.6s both; }
+
+/* Business: signature animation. Glowing hero, words slide up, a light sweep, the button pops and pulses, cards spring in. */
+.run[data-level="business"] .md-glow { animation: mdGlow .9s var(--ease) both, mdGlowDrift 4s ease-in-out .9s infinite; }
+.run[data-level="business"] .md-bar { animation: mdFade .5s var(--ease) both; }
+.run[data-level="business"] .md-h span { animation: mdWord .6s var(--ease) both; }
+.run[data-level="business"] .md-h span:nth-child(1) { animation-delay: .2s; }
+.run[data-level="business"] .md-h span:nth-child(2) { animation-delay: .3s; }
+.run[data-level="business"] .md-h span:nth-child(3) { animation-delay: .4s; }
+.run[data-level="business"] .md-h span:nth-child(4) { animation-delay: .5s; }
+.run[data-level="business"] .md-h::after { animation: mdSweep 1.1s ease-in-out 1.1s both; }
+.run[data-level="business"] .md-sub { animation: mdFade .5s var(--ease) .7s both; }
+.run[data-level="business"] .md-btn { animation: mdPop .55s var(--ease) .85s both, mdPulse 1.6s ease-in-out 1.6s 2; }
+.run[data-level="business"] .md-cards span { animation: mdSlide .6s var(--ease) both; }
+.run[data-level="business"] .md-cards span:nth-child(1) { animation-delay: 1s; }
+.run[data-level="business"] .md-cards span:nth-child(2) { animation-delay: 1.12s; }
+.run[data-level="business"] .md-cards span:nth-child(3) { animation-delay: 1.24s; }
+
+/* Custom: cinematic. Particles rush into a flash of light (canvas), the page unfolds in 3D, cards fly in from depth. */
+.run[data-level="custom"] .md-site { animation: mdUnfold 1s cubic-bezier(.2, .8, .2, 1) 1s both; }
+.run[data-level="custom"] .md-glow { animation: mdGlow .8s ease 1.6s both, mdGlowDrift 4s ease-in-out 2.4s infinite; }
+.run[data-level="custom"] .md-h span { animation: mdBlurIn .7s var(--ease) both; }
+.run[data-level="custom"] .md-h span:nth-child(1) { animation-delay: 1.5s; }
+.run[data-level="custom"] .md-h span:nth-child(2) { animation-delay: 1.6s; }
+.run[data-level="custom"] .md-h span:nth-child(3) { animation-delay: 1.7s; }
+.run[data-level="custom"] .md-h span:nth-child(4) { animation-delay: 1.8s; }
+.run[data-level="custom"] .md-sub { animation: mdFade .5s var(--ease) 1.9s both; }
+.run[data-level="custom"] .md-btn { animation: mdPop .55s var(--ease) 2s both; }
+.run[data-level="custom"] .md-cards span { animation: mdDepth .7s var(--ease) both; }
+.run[data-level="custom"] .md-cards span:nth-child(1) { animation-delay: 2.1s; }
+.run[data-level="custom"] .md-cards span:nth-child(2) { animation-delay: 2.2s; }
+.run[data-level="custom"] .md-cards span:nth-child(3) { animation-delay: 2.3s; }
+
+/* ---------- Extras explained: live previews ---------- */
+.xp__panel.play .xw-body > * { animation: xin .5s var(--ease) both; }
+.xp__panel.play .xw-body > *:nth-child(2) { animation-delay: .06s; }
+.xp__panel.play .xw-body > *:nth-child(3) { animation-delay: .12s; }
+.xp__panel.play .xw-body > *:nth-child(4) { animation-delay: .18s; }
+.xp__panel.play .xw-body > *:nth-child(5) { animation-delay: .24s; }
+.xp__panel.play .xw-body > *:nth-child(6) { animation-delay: .3s; }
+.xp__panel.play .xw-body > *:nth-child(n+7) { animation-delay: .36s; }
+@keyframes xin { from { opacity: 0; transform: translateY(8px); } }
+.o-cart.bump { animation: cartFlash .6s ease; }
+@keyframes cartFlash { 30% { background: #111827; color: #fff; } }
+.xp__panel.play .r-std { animation: fillTo 2.4s ease-out .2s forwards; }
+.xp__panel.play .r-fast { --to: calc(300% / 7); animation: fillTo 1.1s ease-out .3s forwards; }
+.xp__panel.play .cr-fill { --to: 50%; animation: fillTo 1.2s ease-out .5s forwards; }
+@keyframes fillTo { to { width: var(--to, 100%); } }
+.xp__panel.play .r-live { animation: xin .5s 1.5s both; opacity: 1; }
+
+/* ---------- Reduced motion: everything visible, nothing moves ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .intro { display: none !important; }
+  .js .hero__title .line > span, .js .hero__lede, .js .hero__actions, .js .hero__stage { transform: none !important; opacity: 1 !important; transition: none !important; }
+  .js .reveal { clip-path: none !important; transition: none !important; }
+  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
+
+  /* show finished, still states instead of looping motion */
+  .ticker__track, .motion-demo *, .motion-demo *::after, .build__lines .cur, .xprev *, .intro__cursor { animation: none !important; }
+  .ticker__track { flex-wrap: wrap; justify-content: center; width: auto; transform: none; }
+  .ticker__group { flex-wrap: wrap; justify-content: center; padding: 0 16px; }
+  .ticker__group + .ticker__group { display: none; }
+  .md-cursor { opacity: 0; }
+  .motion-demo:not([data-level="starter"]) .md-glow { opacity: 1; }
+  .r-std { width: 100%; } .r-fast { width: calc(300% / 7); } .cr-fill { width: 50%; } .r-live { opacity: 1; }
+}
+
+/* ---------- Dashboard sample: bars and columns grow in once (the line chart animates in js/sections.js) ---------- */
+.dash.play .dash-bars i { animation: barGrow .9s cubic-bezier(.4,0,.2,1) both; }
+.dash.play .dash-bars li:nth-child(2) i { animation-delay: .08s; }
+.dash.play .dash-bars li:nth-child(3) i { animation-delay: .16s; }
+.dash.play .dash-bars li:nth-child(4) i { animation-delay: .24s; }
+@keyframes barGrow { from { transform: scaleX(0); } }
+.dash.play .dash-cols i { animation: colGrow .8s cubic-bezier(.4,0,.2,1) both; }
+.dash.play .dash-cols li:nth-child(2) i { animation-delay: .07s; }
+.dash.play .dash-cols li:nth-child(3) i { animation-delay: .14s; }
+.dash.play .dash-cols li:nth-child(4) i { animation-delay: .21s; }
+.dash.play .dash-cols li:nth-child(5) i { animation-delay: .28s; }
+.dash.play .dash-cols li:nth-child(6) i { animation-delay: .35s; }
+@keyframes colGrow { from { transform: scaleY(0); } }
+@media (prefers-reduced-motion: reduce) { .dash.play .dash-bars i, .dash.play .dash-cols i { animation: none; } }

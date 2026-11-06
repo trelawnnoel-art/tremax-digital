@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Sample Dashboard | TREMAX Digital</title>
+  <meta name="description" content="A sample of the website dashboard that comes with every TREMAX Digital Business package: visitors, Google searches, calls, and more. Made-up numbers for a pretend bakery.">
+  <meta name="theme-color" content="#080D18">
+  <meta name="robots" content="noindex">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body class="dp">
+  <!-- Sample dashboard for the Business package. All numbers are made up (see js/dashboard.js). -->
+  <header class="dp-head">
+    <div class="dp-head__inner">
+      <a class="brand" href="index.html" aria-label="TREMAX Digital home">
+        <svg class="brand__mark" viewBox="0 0 100 100" aria-hidden="true">
+          <defs><linearGradient id="txDp" x1="10" y1="10" x2="90" y2="90" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#75BEFF"/><stop offset="1" stop-color="#3B91F5"/></linearGradient></defs>
+          <g fill="none" stroke="url(#txDp)" stroke-width="9"><path d="M12 16H88"/><path d="M50 16V59"/><path d="M24 30L76 88"/><path d="M76 30L24 88"/></g>
+        </svg>
+        <span class="brand__text"><span class="brand__name">TREMAX</span><span class="brand__sub">DIGITAL</span></span>
+      </a>
+      <a class="btn btn--ghost btn--sm" href="index.html#dashboard">← Back to site</a>
+    </div>
+  </header>
+
+  <div class="dp-banner" role="note">
+    <div class="container">
+      <b>Sample dashboard.</b> Every number here is made up for a pretend bakery, to show what Business clients get. It isn't a real client or a promised result.
+    </div>
+  </div>
+
+  <main class="container dp-main" id="main">
+    <div class="dp-title">
+      <div>
+        <p class="dp-eyebrow">Website dashboard</p>
+        <h1>Rise Bakery</h1>
+        <p class="dp-sub">risebakery.com · <span data-range-label>October</span></p>
+      </div>
+      <div class="dp-range" role="group" aria-label="Date range">
+        <button type="button" data-range="month" aria-pressed="true">October</button>
+        <button type="button" data-range="quarter" aria-pressed="false">Last 3 months</button>
+        <button type="button" data-range="all" aria-pressed="false">Since launch</button>
+      </div>
+    </div>
+
+    <!-- KPI tiles: filled by js/dashboard.js -->
+    <section class="dp-kpis" aria-label="Key numbers" data-kpis></section>
+
+    <section class="dp-grid dp-grid--main">
+      <figure class="dp-card">
+        <figcaption class="dp-card__head">
+          <div><h2>Visitors</h2><p data-visits-sub>Per day in October</p></div>
+          <ul class="dp-legend" data-visits-legend>
+            <li><i class="k-cur"></i>This period</li>
+            <li><i class="k-prev"></i>Period before</li>
+          </ul>
+        </figcaption>
+        <div class="dp-line" data-chart="visits" tabindex="0" role="img" aria-label="Visitors chart"></div>
+        <p class="dp-hint">Hover, tap, or use the arrow keys for each point.</p>
+      </figure>
+
+      <figure class="dp-card">
+        <figcaption class="dp-card__head"><div><h2>From Google search to customer</h2><p>How many people made it to each step</p></div></figcaption>
+        <ol class="dp-funnel" data-funnel></ol>
+        <p class="dp-note">“Contacted you” counts calls, direction requests, and form messages.</p>
+      </figure>
+    </section>
+
+    <section class="dp-grid dp-grid--3">
+      <figure class="dp-card">
+        <figcaption class="dp-card__head"><div><h2>Where visitors came from</h2><p>Share of visitors</p></div></figcaption>
+        <ul class="dp-bars" data-bars="sources"></ul>
+      </figure>
+      <figure class="dp-card">
+        <figcaption class="dp-card__head"><div><h2>How far away they are</h2><p>Based on approximate location</p></div></figcaption>
+        <ul class="dp-bars" data-bars="distance"></ul>
+      </figure>
+      <figure class="dp-card">
+        <figcaption class="dp-card__head"><div><h2>What they used</h2><p>Share of visitors</p></div></figcaption>
+        <ul class="dp-bars" data-bars="devices"></ul>
+      </figure>
+    </section>
+
+    <section class="dp-grid">
+      <figure class="dp-card">
+        <figcaption class="dp-card__head"><div><h2>Google searches that found you</h2><p>From Google Search Console</p></div></figcaption>
+        <div class="dp-table-wrap">
+          <table class="dp-table" data-table="queries">
+            <thead><tr><th scope="col">Search</th><th scope="col">Showed up</th><th scope="col">Clicks</th><th scope="col">Click rate</th><th scope="col">Avg. spot on Google</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <p class="dp-note">“Avg. spot on Google” is where your site usually appeared in the results. 1 is the very top.</p>
+      </figure>
+    </section>
+
+    <section class="dp-grid dp-grid--2">
+      <figure class="dp-card">
+        <figcaption class="dp-card__head"><div><h2>Most visited pages</h2><p>From Google Analytics</p></div></figcaption>
+        <div class="dp-table-wrap">
+          <table class="dp-table" data-table="pages">
+            <thead><tr><th scope="col">Page</th><th scope="col">Views</th><th scope="col">Avg. time on page</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </figure>
+      <figure class="dp-card">
+        <figcaption class="dp-card__head"><div><h2>When people visit</h2><p>Darker blue means more visitors</p></div></figcaption>
+        <div class="dp-heat" data-heat></div>
+        <div class="dp-heat-key" aria-hidden="true"><span>Fewer</span><i></i><span>More</span></div>
+        <p class="dp-note dp-note--tip" data-heat-tip aria-live="polite">Busiest: Saturday mornings, 6 to 9am.</p>
+      </figure>
+    </section>
+
+    <section class="dp-grid dp-grid--2">
+      <figure class="dp-card">
+        <figcaption class="dp-card__head"><div><h2>Calls &amp; direction requests</h2><p>From Google Business Profile, per month</p></div></figcaption>
+        <ul class="dp-cols" data-cols="actions"></ul>
+        <ul class="dp-cols-legend" aria-hidden="true"><li><i></i>Calls</li><li><i></i>Direction requests</li></ul>
+      </figure>
+      <figure class="dp-card">
+        <figcaption class="dp-card__head"><div><h2>What this tells you</h2><p>The kind of notes we'd point out</p></div></figcaption>
+        <ul class="dp-insights">
+          <li><b>Most visitors are on phones.</b> Keep the menu and hours easy to tap.</li>
+          <li><b>Mornings are busiest.</b> A “pre-order for pickup” button could catch people before they leave home.</li>
+          <li><b>“bakery near me” is the top search.</b> Keeping your Google Maps listing up to date helps you show up for it.</li>
+          <li><b>Custom cakes get long visits but few messages.</b> A clearer “Ask about a cake” button on that page could help.</li>
+        </ul>
+      </figure>
+    </section>
+
+    <section class="dp-foot">
+      <div>
+        <h2>Want this for your business?</h2>
+        <p>Every Business site comes with Google Analytics, Search Console, and your Google Business Profile set up, plus your own live dashboard. Your real one is built in Google's free Looker Studio, so the layout looks a little different, but it tracks the same kinds of numbers.</p>
+      </div>
+      <a class="btn btn--primary" href="index.html#pricing">See the Business package</a>
+    </section>
+  </main>
+
+  <footer class="dp-footer"><div class="container">© <span data-year>2026</span> TREMAX Digital · Sample data for illustration only.</div></footer>
+
+  <script src="js/dashboard.js" defer></script>
+</body>
+</html>

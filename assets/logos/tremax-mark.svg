@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="TREMAX Digital monogram">
+  <defs>
+    <linearGradient id="tx" x1="10" y1="10" x2="90" y2="90" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#75BEFF"/>
+      <stop offset="1" stop-color="#3B91F5"/>
+    </linearGradient>
+  </defs>
+  <g fill="none" stroke="url(#tx)" stroke-width="9">
+    <path d="M12 16H88"/>
+    <path d="M50 16V59"/>
+    <path d="M24 30L76 88"/>
+    <path d="M76 30L24 88"/>
+  </g>
+</svg>
