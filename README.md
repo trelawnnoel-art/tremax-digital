@@ -101,7 +101,7 @@ GitHub rebuilds the site within a minute or two.
 
 ## Netlify (backup)
 
-The site is live at https://tremax-digital.netlify.app (Netlify project `tremax-digital`, on the trelawnnoel@gmail.com account). This folder is linked to it (the `.netlify` folder), so to publish changes, open a terminal in this folder and run:
+The site is live at https://tremax-digital.netlify.app (Netlify project `tremax-digital`). This folder is linked to it (the `.netlify` folder), so to publish changes, open a terminal in this folder and run:
 
 ```
 netlify deploy --prod --no-build --dir .
